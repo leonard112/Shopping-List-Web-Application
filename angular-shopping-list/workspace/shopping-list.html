@@ -1,0 +1,90 @@
+<!--Leonard Carcaramo 03/21/19 Utilized code from w3Schools https://www.w3schools.com/angular/angular_application.asp-->
+
+<!DOCTYPE html>
+<html>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+<body>
+
+<div ng-app="myShoppingList" ng-cloak ng-controller="myCtrl" class="w3-card-2 w3-margin">
+    
+    <header class="w3-container w3-light-grey w3-padding-16">
+        <h1>My Shopping List</h1>
+    </header>
+    
+    <ul class="w3-ul">
+        
+        <li class="w3-padding-16 w3-container w3-hide-small">
+            <h2>
+            <div class = "w3-quarter w3-padding w3-center">Item Name</div>
+            <div class = "w3-quarter w3-padding w3-center">Quantity</div>
+            <div class = "w3-quarter w3-padding w3-center">Price</div>
+            <div class = "w3-quarter w3-padding w3-center"></div>
+            </h2>
+        </li>
+        
+        <li ng-repeat="x in list" class="w3-padding-16 w3-container">
+            
+            <div class = "w3-quarter w3-center"><h3>{{x.item}}</h3></div>
+            
+            <div class = "w3-quarter">
+                
+                <div class = "w3-hide-large w3-hide-medium w3-center">Quantity</div>
+                
+                <div class = "w3-margin">
+                    <input type = "number" step="1" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" placeholder="Quantity" ng-model = "x.quantity" class="w3-input w3-border w3-padding w3-panel w3-center" value = {{x.quantity}}>
+                </div>
+                
+            </div>
+            
+            <div class = "w3-quarter">
+                
+                <div class = "w3-hide-large w3-hide-medium w3-center">Price</div>
+                
+                <div class = "w3-margin">
+                    <input type = "number" step = "0.01" placeholder="Price" ng-model = "x.price" class="w3-input w3-border w3-padding w3-panel w3-center" value = {{x.price}}>
+                </div>
+                
+            </div>
+            
+            <div class = "w3-quarter w3-center">
+                <button ng-click="removeItem($index)" class="w3-btn w3-padding w3-red w3-panel">Remove</button>
+            </div>
+            
+        </li>
+        
+        <li>
+            
+            <h3>{{calcTotal()}}</h3>
+            
+        </li>
+        
+    </ul>
+    
+    <div class="w3-container w3-light-grey w3-padding-16">
+        
+        <p class="w3-text-red">{{inputErrorText}}</p>
+        <p class="w3-text-red">{{editErrorText}}</p>
+        
+        Quantity
+        <input min = "0" type = "number" step="1" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" placeholder="Quantity" ng-model="quantity" class="w3-input w3-border w3-padding w3-panel">
+        
+        Price
+        <input min="0" step="0.01" type="number" placeholder="Price" ng-model="price" class="w3-input w3-border w3-padding w3-panel">
+        
+        Item Name
+        <input placeholder="Item Name" ng-model="item" class="w3-input w3-border w3-padding w3-panel">
+        
+        <button ng-click="addItem()" class="w3-btn w3-padding w3-green">Add</button>
+
+    </div>
+</div>
+
+</body>
+
+    <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type = "text/javascript" src="shoppinglist.js"></script>
+
+</html>
